@@ -20,7 +20,7 @@ namespace HomeDepotScheduler.Models.ValidationAttributes
                 case 1:
                     IndexViewModel user = (IndexViewModel)validationContext.ObjectInstance;
 
-                    if (user.BusinessAccount == true && user.StoreNumber == null)
+                    if (user.BusinessAccount == true && ( user.StoreNumber == null || user.AssociateName == null) )
                     {
                         return new ValidationResult(GetErrorMessage());
                     }
@@ -29,7 +29,7 @@ namespace HomeDepotScheduler.Models.ValidationAttributes
                 default:
                     RegisterViewModel userRegister = (RegisterViewModel)validationContext.ObjectInstance;
 
-                    if (userRegister.BusinessAccount == true && userRegister.Company == null)
+                    if (userRegister.BusinessAccount == true && (userRegister.StoreNumber == null || userRegister.AssociateName == null))
                     {
                         return new ValidationResult(GetErrorMessage());
                     }
@@ -48,7 +48,7 @@ namespace HomeDepotScheduler.Models.ValidationAttributes
 
         private string GetErrorMessage()
         {
-            return $"Please enter a company name.";
+            return $"Please enter a store number and associate name.";
         }
 
     }
