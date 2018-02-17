@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using HomeDepotScheduler.Models.ValidationAttributes;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,5 +23,18 @@ namespace HomeDepotScheduler.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
+        [Required]
+        [Display(Name = "Is this a home depot account?")]
+        public bool BusinessAccount { get; set; } = false;
+
+        [StoreNumber(0)]
+        [Display(Name = "Store Number")]
+        public string StoreNumber { get; set; } = null;
+
+        [StoreNumber(0)]
+        [Display(Name = "Associate Name")]
+        public string AssociateName { get; set; }
     }
 }
